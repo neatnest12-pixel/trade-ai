@@ -1,0 +1,2 @@
+@tailwind base;@tailwind components;@tailwind utilities;
+*{box-sizing:border-box}body{margin:0;background:#070a0f;color:#e9eef7;font-family:Arial,sans-serif}.panel{background:linear-gradient(145deg,#101722,#0b1018);border:1px solid #1b2636;border-radius:14px}.label{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:#8592a6}.value{font-variant-numeric:tabular-nums}.glow{box-shadow:0 0 35px rgba(49,214,199,.07)}
