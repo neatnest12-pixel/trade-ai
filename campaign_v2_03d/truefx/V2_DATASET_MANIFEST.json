@@ -1,0 +1,69 @@
+{
+  "source": "TrueFX",
+  "upstream": "Integral OCX per provider documentation",
+  "symbol": "EURUSD",
+  "timezone": "UTC (source timestamp convention used for normalization)",
+  "files": [
+    {
+      "source_archive": "C:\\Users\\ADMIN\\Downloads\\November.zip",
+      "source_file": "EURUSD-2025-11.zip",
+      "raw_file": "C:\\Navora ads\\Shree designer\\New folder\\trade ai\\campaign_v2_03d\\truefx\\raw\\EURUSD-2025-11.zip",
+      "sha256": "0d705129beebe670ed9124fdff7cafbe29d54072f177775ac191ab08de435bde",
+      "file_size": 4750520,
+      "rows": 664676,
+      "first_timestamp": "2025-11-03T03:30:00.821+05:30",
+      "last_timestamp": "2025-11-29T03:29:56.741+05:30",
+      "symbol_values": [
+        "EUR/USD"
+      ],
+      "format": "CSV"
+    },
+    {
+      "source_archive": "C:\\Users\\ADMIN\\Downloads\\December.zip",
+      "source_file": "EURUSD-2025-12.zip",
+      "raw_file": "C:\\Navora ads\\Shree designer\\New folder\\trade ai\\campaign_v2_03d\\truefx\\raw\\EURUSD-2025-12.zip",
+      "sha256": "c031c3cfc7a75ab2ff254779723c4d21da5c71163983f054bbba1819383136e7",
+      "file_size": 4987902,
+      "rows": 694090,
+      "first_timestamp": "2025-12-01T05:30:00.934+05:30",
+      "last_timestamp": "2026-01-01T04:41:38.902+05:30",
+      "symbol_values": [
+        "EUR/USD"
+      ],
+      "format": "CSV"
+    },
+    {
+      "source_archive": "C:\\Users\\ADMIN\\Downloads\\January.zip",
+      "source_file": "EURUSD-2026-01.zip",
+      "raw_file": "C:\\Navora ads\\Shree designer\\New folder\\trade ai\\campaign_v2_03d\\truefx\\raw\\EURUSD-2026-01.zip",
+      "sha256": "ffa2fea8bca6d2e77c365ef0a737373d3db5c00697bede2e29ea4a6370b4d50e",
+      "file_size": 5488573,
+      "rows": 755175,
+      "first_timestamp": "2026-01-01T23:32:25.204+05:30",
+      "last_timestamp": "2026-01-31T03:29:56.406+05:30",
+      "symbol_values": [
+        "EUR/USD"
+      ],
+      "format": "CSV"
+    }
+  ],
+  "total_ticks": 2113941,
+  "earliest_tick": "2025-11-03T03:30:00.821+05:30",
+  "latest_tick": "2026-01-31T03:29:56.406+05:30",
+  "coverage_years": 0.24093086926762491,
+  "invalid_ticks": 0,
+  "duplicate_ticks": 0,
+  "ask_less_bid": 0,
+  "spread_pips": {
+    "p50": 0.1999999999990898,
+    "p75": 0.20000000000131024,
+    "p90": 0.2999999999997449,
+    "p95": 0.30000000000196536,
+    "p99": 2.8999999999990145,
+    "max": 180.40000000000055
+  },
+  "m1_rows": 91019,
+  "normalized_sha256": "eb0e40d53670e76bd752b5156c3778edd9cb6c171012480e6a3225076eba7126",
+  "certification": "CERTIFIED_B_LIMITED_COVERAGE",
+  "final_test_access_count": 0
+}

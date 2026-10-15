@@ -1,6 +1,7 @@
 """Dataset and experiment audit records."""
-from alembic import op
 import sqlalchemy as sa
+from alembic import op
+
 revision="0002";down_revision="0001";branch_labels=None;depends_on=None
 def upgrade():
     op.create_table("dataset_versions",sa.Column("version",sa.String(80),primary_key=True),sa.Column("symbol",sa.String(20),nullable=False),sa.Column("timeframe",sa.String(10),nullable=False),sa.Column("source",sa.String(50),nullable=False),sa.Column("broker",sa.String(100)),sa.Column("timezone",sa.String(30),nullable=False),sa.Column("start_date",sa.DateTime(timezone=True),nullable=False),sa.Column("end_date",sa.DateTime(timezone=True),nullable=False),sa.Column("rows",sa.Integer(),nullable=False),sa.Column("retrieved_at",sa.DateTime(timezone=True),nullable=False),sa.Column("sha256",sa.String(64),unique=True,nullable=False),sa.Column("quality_report",sa.JSON(),nullable=False))

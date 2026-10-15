@@ -1,0 +1,9 @@
+{
+  "status": "BLOCKED_PENDING_AUTHORIZATION",
+  "selected_source": "TrueFX",
+  "symbol": "EURUSD",
+  "requested_period": "2023-01-01 to current",
+  "raw_rows": 0,
+  "raw_sha256": null,
+  "final_test_access_count": 0
+}

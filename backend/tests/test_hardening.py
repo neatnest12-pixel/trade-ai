@@ -24,7 +24,7 @@ def test_all_features_are_prefix_invariant(candles):
         a,b=short[column],long[column]
         if pd.isna(a) and pd.isna(b):
             continue
-        if isinstance(a,(float,np.floating)):
+        if isinstance(a, float | np.floating):
             assert a==pytest.approx(b)
         else:
             assert a==b

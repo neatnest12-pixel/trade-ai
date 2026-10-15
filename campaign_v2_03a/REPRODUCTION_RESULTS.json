@@ -1,0 +1,41 @@
+{
+  "audit_id": "V2C3A-RF-REPRO-001",
+  "dataset_sha256": "bdee314433d16eaa61405ab0c80f3769af2c79af632ce1f8d91458d40f00fcbf",
+  "candidate": {
+    "model": "RandomForest",
+    "seed": 42,
+    "atr_period": 14,
+    "sl": 1.0,
+    "tp": 1.5,
+    "max_hold": 20,
+    "threshold": 0.5,
+    "cost_filter": 2
+  },
+  "validation_trades": {
+    "trades": 6,
+    "win_rate": 0.3333333333333333,
+    "gross_pnl": -0.6750000000010914,
+    "net_pnl": -1.8750000000010916,
+    "expectancy_r": -0.2860730030324913,
+    "profit_factor": 0.6204672911675514,
+    "max_dd_r": -4.5225035372450595,
+    "longest_losing_streak": 0
+  },
+  "independent_metrics": {
+    "trades": 6,
+    "win_rate": 0.3333333333333333,
+    "gross_pnl": -0.6750000000010914,
+    "net_pnl": -1.8750000000010911,
+    "expectancy_r": -0.28607300303249134,
+    "profit_factor": 0.6204672911675514,
+    "max_dd_r": -4.5225035372450595,
+    "longest_losing_streak": 0
+  },
+  "brier": 0.26462632378779605,
+  "pr_auc": 0.3333333333333333,
+  "ambiguous_barrier_trades": 62,
+  "invalid_removed": 0,
+  "zero_risk": 0,
+  "final_test_accessed": false,
+  "decision": "REJECTED_METRIC_ARTIFACT_PENDING_FURTHER_AUDIT"
+}

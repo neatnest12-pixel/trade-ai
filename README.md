@@ -15,6 +15,33 @@ prominently labelled as such.
 - `backend/app/db`: SQLAlchemy candles, immutable prediction records, evaluations, backtests and paper trades.
 - `frontend`: Next.js dark terminal with TradingView Lightweight Charts and an honest empty-state analytics page.
 
+## Reproducible environments
+
+Core tests and lint use Python 3.12 without the optional MT5 package:
+
+```powershell
+py -3.12 -m venv .coreenv
+.\.coreenv\Scripts\Activate.ps1
+python -m pip install -r requirements-dev.txt
+$env:MARKET_DATA_SOURCE="mock"; $env:PYTHONPATH="backend"; python -m pytest backend/tests -q
+$env:PYTHONPATH="backend"; ruff check backend
+```
+
+The Windows MT5 connector uses the separate Python 3.12 environment:
+
+```powershell
+py -3.12 -m venv .mt5env2
+.\.mt5env2\Scripts\Activate.ps1
+python -m pip install -r requirements-mt5.txt
+$env:MT5_READ_ONLY="true"; $env:TRADING_EXECUTION_ENABLED="false"
+```
+
+Start the API with an explicitly selected adapter:
+
+```powershell
+$env:PYTHONPATH="backend"; $env:MARKET_DATA_SOURCE="mock"; uvicorn app.main:app --reload
+```
+
 ## Local startup
 
 Python 3.12+ and Node.js 22+ are recommended.

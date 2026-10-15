@@ -1,0 +1,1 @@
+# HistData Review`n`nHistData advertises EUR/USD M1 and tick files. Its FAQ states bar OHLC is based on tick Bid price. Historical ask/spread is not provided in the reviewed material, so execution-cost modeling would require a separate documented spread model. It is a fallback candidate, not selected yet.

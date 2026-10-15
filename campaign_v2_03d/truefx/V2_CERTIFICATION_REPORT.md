@@ -1,0 +1,1 @@
+# TrueFX V2 Certification`n`nThree monthly TrueFX EURUSD blocks (November 2025, December 2025, January 2026) pass tick/OHLC integrity and deterministic aggregation. Certification is CERTIFIED_B_LIMITED_COVERAGE because coverage is approximately 0.24 years and not sufficient for Campaign #4.

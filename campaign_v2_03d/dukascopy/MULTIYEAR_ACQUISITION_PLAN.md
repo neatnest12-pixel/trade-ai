@@ -1,0 +1,1 @@
+# Multi-year acquisition plan`n`nBlocked pending provider confirmation. If approved: download weekly chunks from 2023-01-01 to latest, hash each raw chunk, validate bid/ask, normalize UTC, aggregate deterministic M1, and maintain resumable state.

@@ -1,0 +1,96 @@
+{
+  "campaign": "V2 #3D.10",
+  "read_only": true,
+  "terminal_path": "C:\\Program Files\\MetaTrader 5",
+  "terminal_version": [
+    500,
+    6116,
+    "14 Aug 2026"
+  ],
+  "broker": "MetaQuotes Ltd.",
+  "server": "MetaQuotes-Demo",
+  "account_mode": "DEMO",
+  "account_currency": "USD",
+  "symbol": "EURUSD",
+  "symbol_specification": {
+    "description": "Euro vs US Dollar",
+    "currency_base": "EUR",
+    "currency_profit": "USD",
+    "digits": 5,
+    "point": 1e-05,
+    "trade_contract_size": 100000.0,
+    "volume_min": 0.01,
+    "volume_step": 0.01,
+    "spread_float": true
+  },
+  "retrieval_timestamp": "2026-08-15T11:42:57.725229+00:00",
+  "datasets": {
+    "M1": {
+      "raw_path": "campaign_v2_03d\\mt5_canonical\\EURUSD_MT5_M1_RAW_V1.csv",
+      "normalized_path": "campaign_v2_03d\\mt5_canonical\\EURUSD_MT5_M1_V1.csv",
+      "raw_sha256": "e6a30ceca0dd4827821c4e41644c063dba0b6dcf0715b63af8d73c12d1ad628b",
+      "normalized_sha256": "e6a30ceca0dd4827821c4e41644c063dba0b6dcf0715b63af8d73c12d1ad628b",
+      "rows": 99999,
+      "start": "2026-05-11T13:16:00+00:00",
+      "end": "2026-08-14T23:58:00+00:00"
+    },
+    "M5": {
+      "raw_path": "campaign_v2_03d\\mt5_canonical\\EURUSD_MT5_M5_RAW_V1.csv",
+      "normalized_path": "campaign_v2_03d\\mt5_canonical\\EURUSD_MT5_M5_V1.csv",
+      "raw_sha256": "9c3fdc8c2212399ca59aaa3f622597bc0542461f95b7aaa9d17a59cf0432d46f",
+      "normalized_sha256": "9c3fdc8c2212399ca59aaa3f622597bc0542461f95b7aaa9d17a59cf0432d46f",
+      "rows": 99999,
+      "start": "2025-04-11T09:35:00+00:00",
+      "end": "2026-08-14T23:50:00+00:00"
+    },
+    "M15": {
+      "raw_path": "campaign_v2_03d\\mt5_canonical\\EURUSD_MT5_M15_RAW_V1.csv",
+      "normalized_path": "campaign_v2_03d\\mt5_canonical\\EURUSD_MT5_M15_V1.csv",
+      "raw_sha256": "82849c835880f52865f1e1694bd1bc91998fa0c0e54406a304266e4f1a920d30",
+      "normalized_sha256": "82849c835880f52865f1e1694bd1bc91998fa0c0e54406a304266e4f1a920d30",
+      "rows": 99999,
+      "start": "2022-08-05T09:30:00+00:00",
+      "end": "2026-08-14T23:30:00+00:00"
+    },
+    "H1": {
+      "raw_path": "campaign_v2_03d\\mt5_canonical\\EURUSD_MT5_H1_RAW_V1.csv",
+      "normalized_path": "campaign_v2_03d\\mt5_canonical\\EURUSD_MT5_H1_V1.csv",
+      "raw_sha256": "4d3a9cf6d2be0ce66fb97374f704390d34f4c354712e18c6b6187e08b3cf6233",
+      "normalized_sha256": "4d3a9cf6d2be0ce66fb97374f704390d34f4c354712e18c6b6187e08b3cf6233",
+      "rows": 99999,
+      "start": "2010-07-06T12:00:00+00:00",
+      "end": "2026-08-14T22:00:00+00:00"
+    },
+    "H4": {
+      "raw_path": "campaign_v2_03d\\mt5_canonical\\EURUSD_MT5_H4_RAW_V1.csv",
+      "normalized_path": "campaign_v2_03d\\mt5_canonical\\EURUSD_MT5_H4_V1.csv",
+      "raw_sha256": "a7fd0bb447ec23062e4eb9d76e66dc45414c3335299a790b7aedcd129d6b1306",
+      "normalized_sha256": "a7fd0bb447ec23062e4eb9d76e66dc45414c3335299a790b7aedcd129d6b1306",
+      "rows": 50168,
+      "start": "1971-01-04T00:00:00+00:00",
+      "end": "2026-08-14T16:00:00+00:00"
+    }
+  },
+  "derived_timeframes": {
+    "M5": {
+      "path": "campaign_v2_03d\\mt5_canonical\\EURUSD_MT5_M5_DERIVED_V1.csv",
+      "rows": 20001,
+      "sha256": "6add60c604e696c60927f5c83ac2ffe4b194b686c9d9e36d2be006eb92701245"
+    },
+    "M15": {
+      "path": "campaign_v2_03d\\mt5_canonical\\EURUSD_MT5_M15_DERIVED_V1.csv",
+      "rows": 6667,
+      "sha256": "da8856c94fd7fb9ea2dc30d1528d48fa0ce996b735facfd5c0b9a3231b0a91bc"
+    },
+    "H1": {
+      "path": "campaign_v2_03d\\mt5_canonical\\EURUSD_MT5_H1_DERIVED_V1.csv",
+      "rows": 1667,
+      "sha256": "51483cbf2a7bb888ef4adde3b426196d7a795d3a522ad664533f97dd1b5c636d"
+    },
+    "H4": {
+      "path": "campaign_v2_03d\\mt5_canonical\\EURUSD_MT5_H4_DERIVED_V1.csv",
+      "rows": 417,
+      "sha256": "10a0e85355271786942a66f0d03acef63b29d094120dc9e12ecbaae3350553dc"
+    }
+  }
+}

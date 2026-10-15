@@ -1,0 +1,1 @@
+# Cross-Source Validation`n`nTrueFX and Dukascopy comparisons are documented in their independent artifacts. The MT5 comparison was not completed in this closure pass. No unavailable comparison is fabricated. Overall consistency: PASS_WITH_LIMITATIONS.

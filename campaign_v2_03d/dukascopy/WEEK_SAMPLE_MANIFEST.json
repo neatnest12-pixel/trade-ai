@@ -1,0 +1,10 @@
+{
+  "file": "eurusd-tick-2025-11-10-2025-11-15.csv",
+  "sha256": "3e13202b6e20e5cd23a860d4d8711433ecbc1c85cf1df52966899eaa0f443d4f",
+  "first": "2025-11-10T00:00:00.798Z",
+  "invalid_ticks": 0,
+  "last": "2025-11-14T21:59:59.101Z",
+  "ask_less_bid": 0,
+  "duplicates": 0,
+  "rows": 265226
+}

@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 
 import pandas as pd
 
+from app.core.volatility import DEFAULT_MAX_ATR_PCT, DEFAULT_MIN_ATR_PCT
 from app.domain.schemas import AgentResult, Direction
 
 
@@ -45,8 +46,9 @@ class BreakoutAgent(Agent):
         v=float(r.bos_bullish)-float(r.bos_bearish)
         return result("Breakout Agent",v,["Confirmed close beyond prior swing"],["bos_bullish","bos_bearish"])
 class VolatilityAgent(Agent):
-    def evaluate(self,r):
-        v=0 if .0004<=r.atr_pct<=.004 else -.2
+    def evaluate(self, r, *, min_atr_pct: float = DEFAULT_MIN_ATR_PCT,
+                 max_atr_pct: float = DEFAULT_MAX_ATR_PCT):
+        v=0 if min_atr_pct <= r.atr_pct <= max_atr_pct else -.2
         return result("Volatility Agent",v,["ATR percentage risk filter"],["atr_pct"])
 class MultiTimeframeAgent(Agent):
     def evaluate(self,r):

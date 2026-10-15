@@ -1,0 +1,197 @@
+"""Tamper-evident read-only M1 forward prediction collector. No execution APIs exist here."""
+from __future__ import annotations
+
+import hashlib
+import json
+import os
+import time
+import uuid
+from datetime import UTC, datetime
+from pathlib import Path
+
+import MetaTrader5 as mt5
+import pandas as pd
+from sklearn.base import clone
+from sklearn.calibration import CalibratedClassifierCV
+from sklearn.frozen import FrozenEstimator
+
+from app.analysis.features import build_features, generate_targets
+from app.core.config import get_settings
+from app.ml.models import CLASSIFIERS
+from app.research.evaluation import MODEL_FEATURES
+from app.services.runtime_state import write_state
+from app.services.worker_lock import SingleWorkerLock
+
+JOURNAL=Path("certified_data/FORWARD_PAPER_JOURNAL.jsonl")
+SERVER_OFFSET_SECONDS: int=0
+
+
+def guard() -> None:
+    if os.getenv("MT5_READ_ONLY","").lower()!="true" or os.getenv("TRADING_EXECUTION_ENABLED","").lower()!="false":
+        raise RuntimeError("Forward collector fails closed unless read-only=true and execution=false")
+
+
+def assert_official_write_guard(lock: SingleWorkerLock, snapshot_id: str | None, config_hash: str | None, expected_snapshot_id: str | None, expected_config_hash: str | None) -> None:
+    """Fail closed immediately before an official forward-paper journal write."""
+    if (lock.lock_name != "navora-v1-paper-validation" or not lock.is_owner() or not snapshot_id
+            or not config_hash or snapshot_id != expected_snapshot_id or config_hash != expected_config_hash):
+        raise RuntimeError("OFFICIAL_WRITE_GUARD_FAILED")
+
+def prediction_key(record: dict[str, object]):
+    if record.get("type") != "prediction":
+        return None
+
+    fields = (
+        "v1_snapshot_id",
+        "v1_config_hash",
+        "symbol",
+        "timeframe",
+        "candle_timestamp",
+    )
+
+    if not all(record.get(field) for field in fields):
+        raise RuntimeError(
+            "Fail closed: official prediction uniqueness key incomplete"
+        )
+
+    return tuple(str(record[field]) for field in fields)
+
+
+def prediction_already_exists(record: dict[str, object]) -> bool:
+    wanted = prediction_key(record)
+
+    if wanted is None or not JOURNAL.exists():
+        return False
+
+    for line_number, line in enumerate(
+        JOURNAL.read_text(encoding="utf-8").splitlines(),
+        start=1,
+    ):
+        if not line.strip():
+            continue
+
+        try:
+            existing = json.loads(line)
+        except json.JSONDecodeError as exc:
+            raise RuntimeError(
+                f"Fail closed: malformed forward journal at line {line_number}"
+            ) from exc
+
+        if prediction_key(existing) == wanted:
+            return True
+
+    return False
+
+
+def append(record: dict[str, object]) -> str:
+    previous="GENESIS"
+    if JOURNAL.exists():
+        lines=JOURNAL.read_text(encoding="utf-8").splitlines()
+        if lines: previous=json.loads(lines[-1])["record_hash"]
+    record["previous_hash"]=previous
+    record_hash=hashlib.sha256(json.dumps(record,sort_keys=True,separators=(",",":"),default=str).encode()).hexdigest()
+    record["record_hash"]=record_hash
+    JOURNAL.parent.mkdir(parents=True,exist_ok=True)
+    with JOURNAL.open("a",encoding="utf-8") as handle:
+        handle.write(json.dumps(record,sort_keys=True,default=str)+"\n");handle.flush();os.fsync(handle.fileno())
+    return record_hash
+
+
+def fit_forward_model():
+    manifest=json.loads(Path("certified_data/DATASET_MANIFEST.json").read_text())
+    item=manifest["datasets"]["1m"]
+    if not item.get("certified"): raise RuntimeError("M1 dataset is not certified")
+    path=Path("certified_data/datasets")/item["version"]/"data.csv"
+    frame=pd.read_csv(path);frame["timestamp"]=pd.to_datetime(frame.timestamp,utc=True)
+    full=generate_targets(build_features(frame)).dropna(subset=MODEL_FEATURES+["target_up"]).reset_index(drop=True)
+    split=int(len(full)*.8);base=clone(CLASSIFIERS["random_forest"]).fit(full.loc[:split-1,MODEL_FEATURES],full.loc[:split-1,"target_up"].astype(int))
+    model=CalibratedClassifierCV(FrozenEstimator(base),method="isotonic").fit(full.loc[split:,MODEL_FEATURES],full.loc[split:,"target_up"].astype(int))
+    version=hashlib.sha256((item["sha256"]+"random_forest-isotonic-forward-v1").encode()).hexdigest()
+    return model,version,item["version"]
+
+
+def completed_frame() -> pd.DataFrame:
+    rates=mt5.copy_rates_from_pos("EURUSD",mt5.TIMEFRAME_M1,1,500)
+    if rates is None or not len(rates): raise RuntimeError(f"MT5 history unavailable: {mt5.last_error()}")
+    frame=pd.DataFrame(rates).rename(columns={"time":"timestamp"})
+    frame["timestamp"] = pd.to_datetime(
+        frame["timestamp"],
+        unit="s",
+        utc=True,
+    )
+    return frame.sort_values("timestamp").reset_index(drop=True)
+
+
+def run(loop: bool=True) -> None:
+    global SERVER_OFFSET_SECONDS
+    guard()
+    settings = get_settings()
+    worker_id = os.getenv("WORKER_ID", str(uuid.uuid4()))
+    state_path = Path(settings.runtime_state_path)
+    started_at = datetime.now(UTC).isoformat()
+    if not settings.v1_snapshot_id or not settings.v1_config_hash:
+        write_state(state_path, {"status":"PAUSED", "reason":"Frozen V1 identity missing", "worker_id":worker_id, "startup_timestamp":started_at})
+        return
+    lock = SingleWorkerLock(Path("runtime/forward_paper.lock"), worker_id, settings.worker_lease_seconds)
+    if not lock.acquire():
+        write_state(state_path, {"status":"PAUSED", "reason":"Another worker owns the lease", "worker_id":worker_id, "startup_timestamp":started_at})
+        return
+    if not mt5.initialize(path=r"C:\Program Files\MetaTrader 5\terminal64.exe"):
+        lock.release()
+        raise RuntimeError(str(mt5.last_error()))
+    # MT5 copy_rates_* timestamps are Unix UTC epochs.
+    # Never infer timezone from tick age; stale/weekend ticks are not offsets.
+    SERVER_OFFSET_SECONDS = 0
+    model,model_version,dataset_version=fit_forward_model();last_predicted=None;pending=None
+    try:
+        while True:
+            lock.refresh()
+            frame=completed_frame();features=build_features(frame);row=features.iloc[-1];stamp=row.timestamp.isoformat()
+            write_state(state_path, {"status":"RUNNING", "worker_id":worker_id, "startup_timestamp":started_at, "last_heartbeat":datetime.now(UTC).isoformat(), "lease_seconds":settings.worker_lease_seconds, "active_snapshot_id":settings.v1_snapshot_id, "active_config_hash":settings.v1_config_hash, "last_completed_m1":stamp})
+            if row.timestamp>pd.Timestamp.now(tz="UTC"):
+                raise RuntimeError("Fail closed: MT5 completed candle remains future-dated after normalization")
+            if pending and stamp!=pending["candle_timestamp"]:
+                prior=frame.loc[frame.timestamp==pd.Timestamp(pending["candle_timestamp"])]
+                if len(prior):
+                    actual=frame.iloc[-1];direction="UP" if actual.close>prior.iloc[0].close else "DOWN"
+                    append({"type":"evaluation","evaluated_at":datetime.now(UTC).isoformat(),"prediction_hash":pending["record_hash"],
+                      "actual_candle_timestamp":stamp,"actual_direction":direction,
+                      "direction_correct":direction==pending["predicted_direction"],"actual_close":float(actual.close)})
+                pending=None
+            if stamp!=last_predicted:
+                probability=float(model.predict_proba(pd.DataFrame([row[MODEL_FEATURES].to_dict()]))[0,1])
+                confidence=max(probability,1-probability);decision="NO TRADE" if confidence<.55 else ("BUY" if probability>=.5 else "SELL")
+                record={"type":"prediction","prediction_time":datetime.now(UTC).isoformat(),"symbol":"EURUSD","timeframe":"1m",
+                  "candle_timestamp":stamp,"probability_up":probability,"probability_down":1-probability,
+                  "predicted_direction":"UP" if probability>=.5 else "DOWN","decision":decision,
+                  "model_version":model_version,"dataset_version":dataset_version,"mode":"FORWARD_PAPER_READ_ONLY", "v1_snapshot_id":settings.v1_snapshot_id, "v1_config_hash":settings.v1_config_hash}
+                assert_official_write_guard(lock, settings.v1_snapshot_id, settings.v1_config_hash,
+                                            settings.v1_snapshot_id, settings.v1_config_hash)
+                if prediction_already_exists(record):
+                    last_predicted = stamp
+                    write_state(
+                        state_path,
+                        {
+                            "status": "RUNNING",
+                            "worker_id": worker_id,
+                            "startup_timestamp": started_at,
+                            "last_heartbeat": datetime.now(UTC).isoformat(),
+                            "lease_seconds": settings.worker_lease_seconds,
+                            "active_snapshot_id": settings.v1_snapshot_id,
+                            "active_config_hash": settings.v1_config_hash,
+                            "last_completed_m1": stamp,
+                            "last_action": "ALREADY_PREDICTED",
+                        },
+                    )
+                else:
+                    record["record_hash"] = append(record)
+                    pending = record
+                    last_predicted = stamp
+            if not loop: break
+            time.sleep(5)
+    finally:
+        lock.release()
+        mt5.shutdown()
+
+
+if __name__=="__main__": run(loop=os.getenv("FORWARD_ONCE","").lower()!="true")

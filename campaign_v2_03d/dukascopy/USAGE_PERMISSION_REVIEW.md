@@ -1,0 +1,1 @@
+# Usage Permission Review`n`nOfficial Dukascopy tooling documents historical EURUSD downloads and API access, but the reviewed pages do not explicitly grant automated multi-year private storage, M1 transformation, and backtesting rights. Status: UNCLEAR — provider confirmation required. Redistribution/resale must not occur.

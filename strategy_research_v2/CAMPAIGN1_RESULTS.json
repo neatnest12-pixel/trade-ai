@@ -1,0 +1,49 @@
+{
+  "campaign": "V2 RESEARCH #1",
+  "timestamp": "2026-08-15T09:19:09.612085+00:00",
+  "dataset_sha256": "bdee314433d16eaa61405ab0c80f3769af2c79af632ce1f8d91458d40f00fcbf",
+  "rows": 100000,
+  "partitions": {
+    "train": 60000.0,
+    "validation": 20000.0,
+    "final_test": "untouched/not opened; no validation-positive finalist"
+  },
+  "total_configurations_evaluated": 200,
+  "best_validation_candidate": {
+    "experiment_id": "V2C1-bollinger_reversion-NEW_YORK-BEAR_TREND",
+    "strategy": "bollinger_reversion",
+    "session": "NEW_YORK",
+    "regime": "BEAR_TREND",
+    "split": "validation",
+    "dataset_sha256": "bdee314433d16eaa61405ab0c80f3769af2c79af632ce1f8d91458d40f00fcbf",
+    "trades": 222,
+    "win_rate": 0.46846846846846846,
+    "expectancy_r": -0.015572879865861724,
+    "profit_factor": 0.9436767031606683,
+    "max_drawdown_r": -15.95889750958668,
+    "longest_losing_streak": 10
+  },
+  "leaderboard": "EXPERIMENT_LEADERBOARD.csv",
+  "strategies_tested": [
+    "ema_crossover",
+    "rsi_momentum",
+    "rsi_mean_reversion",
+    "donchian_breakout",
+    "bollinger_reversion"
+  ],
+  "target_types_tested": [
+    "1-bar forward return"
+  ],
+  "regimes_tested": [
+    "BULL_TREND",
+    "BEAR_TREND",
+    "RANGE"
+  ],
+  "sessions_tested": [
+    "ASIAN",
+    "LONDON",
+    "NEW_YORK",
+    "OVERLAP"
+  ],
+  "status": "SCREENING COMPLETE; NO FINALIST PROMOTED"
+}

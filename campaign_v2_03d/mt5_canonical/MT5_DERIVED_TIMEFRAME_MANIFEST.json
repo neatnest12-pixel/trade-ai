@@ -1,0 +1,40 @@
+{
+  "source_rows": 70540,
+  "source_start": "2026-06-09T00:18:00+00:00",
+  "source_end": "2026-08-14T23:59:00+00:00",
+  "source_duplicates": 0,
+  "timeframes": {
+    "M5": {
+      "rows": 14107,
+      "start": "2026-06-09T00:20:00+00:00",
+      "end": "2026-08-14T23:55:00+00:00",
+      "missing_source_groups": 2,
+      "discarded_incomplete_groups": 2,
+      "sha256": "c21675d8402b4d54914533b0f31cb347d6fac6889e3bd568dde39daea751a399"
+    },
+    "M15": {
+      "rows": 4701,
+      "start": "2026-06-09T00:30:00+00:00",
+      "end": "2026-08-14T23:45:00+00:00",
+      "missing_source_groups": 2,
+      "discarded_incomplete_groups": 2,
+      "sha256": "f09fdd7f456a6e0bf15bee89cf586025dd22dec8d248f3f2048c0dcb4c69ec10"
+    },
+    "H1": {
+      "rows": 1174,
+      "start": "2026-06-09T01:00:00+00:00",
+      "end": "2026-08-14T23:00:00+00:00",
+      "missing_source_groups": 2,
+      "discarded_incomplete_groups": 2,
+      "sha256": "a25c22b20af164efc0c27bc36618bdb378ec8ec0b2a35270bab3584cee75d0ca"
+    },
+    "H4": {
+      "rows": 292,
+      "start": "2026-06-09T04:00:00+00:00",
+      "end": "2026-08-14T20:00:00+00:00",
+      "missing_source_groups": 2,
+      "discarded_incomplete_groups": 2,
+      "sha256": "fcf11c325474d528018002ccdb623e0330d6662ed690ea9fdfc31506d8537aae"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "files": [
+    {
+      "source_archive": "C:\\Users\\ADMIN\\Downloads\\November.zip",
+      "source_file": "EURUSD-2025-11.zip",
+      "raw_file": "C:\\Navora ads\\Shree designer\\New folder\\trade ai\\campaign_v2_03d\\truefx\\raw\\EURUSD-2025-11.zip",
+      "sha256": "0d705129beebe670ed9124fdff7cafbe29d54072f177775ac191ab08de435bde",
+      "file_size": 4750520,
+      "rows": 664676,
+      "first_timestamp": "2025-11-02T22:00:00.821000+00:00",
+      "last_timestamp": "2025-11-28T21:59:56.741000+00:00",
+      "symbol_values": [
+        "EUR/USD"
+      ],
+      "format": "CSV"
+    },
+    {
+      "source_archive": "C:\\Users\\ADMIN\\Downloads\\December.zip",
+      "source_file": "EURUSD-2025-12.zip",
+      "raw_file": "C:\\Navora ads\\Shree designer\\New folder\\trade ai\\campaign_v2_03d\\truefx\\raw\\EURUSD-2025-12.zip",
+      "sha256": "c031c3cfc7a75ab2ff254779723c4d21da5c71163983f054bbba1819383136e7",
+      "file_size": 4987902,
+      "rows": 694090,
+      "first_timestamp": "2025-12-01T00:00:00.934000+00:00",
+      "last_timestamp": "2025-12-31T23:11:38.902000+00:00",
+      "symbol_values": [
+        "EUR/USD"
+      ],
+      "format": "CSV"
+    },
+    {
+      "source_archive": "C:\\Users\\ADMIN\\Downloads\\January.zip",
+      "source_file": "EURUSD-2026-01.zip",
+      "raw_file": "C:\\Navora ads\\Shree designer\\New folder\\trade ai\\campaign_v2_03d\\truefx\\raw\\EURUSD-2026-01.zip",
+      "sha256": "ffa2fea8bca6d2e77c365ef0a737373d3db5c00697bede2e29ea4a6370b4d50e",
+      "file_size": 5488573,
+      "rows": 755175,
+      "first_timestamp": "2026-01-01T18:02:25.204000+00:00",
+      "last_timestamp": "2026-01-30T21:59:56.406000+00:00",
+      "symbol_values": [
+        "EUR/USD"
+      ],
+      "format": "CSV"
+    }
+  ]
+}

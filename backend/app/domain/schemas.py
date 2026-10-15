@@ -30,6 +30,10 @@ class PredictionResponse(BaseModel):
     expected_low: float
     expected_close_return: float
     expected_range: float
+    entry_reference: float
+    stop_loss: float
+    target: float
+    risk_reward: float
     confidence: float = Field(ge=0, le=100)
     confidence_label: str
     evidence_status: str

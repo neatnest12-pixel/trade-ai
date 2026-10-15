@@ -1,0 +1,15 @@
+{
+  "base_git_commit": "2f18e262bfdef916e1dd4cc28f61aff7d4b5a4c2",
+  "snapshot_timestamp": "2026-08-16T10:22:23Z",
+  "signal_engine_version": "v1-paper-heuristic",
+  "strategy_version": "v1-paper-heuristic",
+  "risk_engine_version": "v1-paper",
+  "paper_journal_version": "v1-immutable-outcomes",
+  "cost_model_version": "unconfigured",
+  "configuration": {"symbol":"EURUSD","timeframes":["1m","5m","15m"],"broker":"Raw Trading Ltd","server":"ICMarketsSC-Demo","market_data_source":"mt5","mt5_read_only":true,"trading_execution_enabled":false,"paper_starting_balance_inr":2500,"max_paper_risk_percent":1,"max_paper_risk_inr":25},
+  "parent_snapshot": "v1-paper-e19b678d23760196",
+  "alembic_revision": "0003",
+  "configuration_hash": "0d891a2356e35464dbe3ba9f51c50fe240e40feff84fe4008d8b1564b55f9eac",
+  "v1_snapshot_id": "v1-paper-r4-0d891a2356e35464",
+  "relevant_files": {"backend/app/core/config.py":"b9961d7e9598d133e86f1ea664cb0d90824d722495acfdce873b30932b9f244a","backend/app/main.py":"870df8e5b6f3899c8b2a21c6def72df752e5e4cfa82c04e88dc2db0cacd13272","backend/app/domain/schemas.py":"b584c3c4b998c9d41e90ce4f4f42128b1ff97257b60b915d12f09e123b8d4a35","backend/app/db/models.py":"28f6ff80dd538febadb459a1f19450aa37a978e617455c89f473882fcd9390f8","backend/app/market_data/adapters.py":"d7ce6f317bf1d2db4cdb9a7a183221e235288c04b99c91c5f934aca2078afa45","backend/app/services/prediction.py":"fc0a53ff3671da2f0033a75348799e070342a53b9245381543b8c960079f1117","backend/app/services/risk.py":"586347edd093f94df63f5d667c8c33c22d7d8e9fcf1fdbad0f29c7d90f99ec6a","backend/app/services/journal.py":"365fe8f71649965d0271bb7b417ce7ecc54631f8694510e47c64e0a3cc4a1db7","backend/app/services/metrics.py":"83408a97c81812f51ba4065ff89776936d37fe474e9bd8177aed9d6d3c77b53c","backend/app/strategies/agents.py":"e59c7f457681c0c0ae460583346fb86a99e1571476b646124272b7d500fb6b58","frontend/app/page.tsx":"633c4b3772b4102631161608e382dad48817eb46fb611eee25da2b76f01b8e3c"}
+}

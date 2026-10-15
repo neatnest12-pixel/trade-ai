@@ -1,0 +1,8 @@
+$env:APP_ENV = 'paper'
+$env:MT5_READ_ONLY = 'true'
+$env:TRADING_EXECUTION_ENABLED = 'false'
+$env:DEMO_EXECUTION_ENABLED = 'false'
+$env:REAL_EXECUTION_ENABLED = 'false'
+$env:FIT_MODEL = '0'
+$env:ORDER_SEND = '0'
+$env:PYTHONDONTWRITEBYTECODE = '1'

@@ -46,6 +46,8 @@ class Prediction(Base):
     feature_snapshot: Mapped[dict[str, Any]] = mapped_column(JSON)
     model_version: Mapped[str] = mapped_column(String(50))
     data_version: Mapped[str] = mapped_column(String(50))
+    v1_snapshot_id: Mapped[str | None] = mapped_column(String(80), nullable=True, index=True)
+    v1_config_hash: Mapped[str | None] = mapped_column(String(64), nullable=True, index=True)
     evaluated_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     actual_direction: Mapped[str | None] = mapped_column(String(10), nullable=True)
     actual_high: Mapped[float | None] = mapped_column(Float, nullable=True)

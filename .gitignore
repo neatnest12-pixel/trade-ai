@@ -11,3 +11,26 @@ __pycache__/
 *.egg-info/
 frontend/node_modules/
 frontend/.next/
+
+# Local credentials and machine-specific environments
+.env.*
+!.env.example
+!**/.env.*.example
+.venv*/
+.mt5env*/
+**/node_modules/
+.playwright-cli/
+
+# Local execution state, market datasets, and database backups
+runtime/
+certified_data/
+backend/certified_data/
+histdata_inspect/
+truefx_inspect/
+*.db.*
+*.log
+
+# Downloaded campaign market data
+campaign*/**/*.csv
+campaign*/**/*.zip
+campaign*/**/*.bi5

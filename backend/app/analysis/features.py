@@ -5,6 +5,7 @@ from app.analysis.indicators import add_indicators
 from app.analysis.liquidity import add_liquidity
 from app.analysis.patterns import detect_patterns
 from app.analysis.structure import add_structure
+from app.core.volatility import DEFAULT_MAX_ATR_PCT, DEFAULT_MIN_ATR_PCT
 
 
 def build_features(df: pd.DataFrame) -> pd.DataFrame:
@@ -26,14 +27,14 @@ def generate_targets(df: pd.DataFrame) -> pd.DataFrame:
     return x
 
 
-def classify_regime(row: pd.Series) -> str:
+def classify_regime(row: pd.Series, *, min_atr_pct: float = DEFAULT_MIN_ATR_PCT,
+                    max_atr_pct: float = DEFAULT_MAX_ATR_PCT) -> str:
     adx=float(row.get("adx_14",0) or 0); atrp=float(row.get("atr_pct",0) or 0); spread=float(row.get("ema_spread",0) or 0)
-    if atrp>.004: return "high volatility"
-    if atrp<.0004: return "low volatility"
+    if atrp > max_atr_pct: return "high volatility"
+    if atrp < min_atr_pct: return "low volatility"
     if adx>=25 and spread>0: return "strong bullish trend"
     if adx>=25 and spread<0: return "strong bearish trend"
     if adx>=18 and spread>0: return "weak bullish trend"
     if adx>=18 and spread<0: return "weak bearish trend"
     if float(row.get("bb_position",.5) or .5) > .9 or float(row.get("bb_position",.5) or .5)<.1: return "possible breakout environment"
     return "range"
-

@@ -1,0 +1,21 @@
+{
+  "dukascopy_minutes": 6997,
+  "truefx_minutes": 7075,
+  "common_minutes": 6994,
+  "dukascopy_only": 3,
+  "truefx_only": 81,
+  "common_coverage": 0.9995712448192082,
+  "bid_return_correlation": 0.8782422309242185,
+  "ask_return_correlation": 0.847576764165076,
+  "directional_agreement": 0.831998856162425,
+  "bid_abs_diff_p50": 1.0000000000065512e-05,
+  "bid_abs_diff_p95": 3.0000000000196536e-05,
+  "bid_abs_diff_p99": 9.999999999998899e-05,
+  "ask_abs_diff_p50": 1.0000000000065512e-05,
+  "ask_abs_diff_p95": 3.0000000000196536e-05,
+  "ask_abs_diff_p99": 0.000180000000000069,
+  "truefx_spread_p50": 0.10000000000065512,
+  "truefx_spread_p95": 0.3999999999981796,
+  "dukascopy_spread_p50": 0.30000000000085514,
+  "dukascopy_spread_p95": 0.5999999999994898
+}

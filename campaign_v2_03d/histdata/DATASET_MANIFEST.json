@@ -1,0 +1,18 @@
+{
+  "dataset": "EURUSD_HISTDATA_M1_V1",
+  "source": "HistData",
+  "symbol": "EURUSD",
+  "timezone_source": "America/New_York EST/EDT",
+  "normalized_timezone": "UTC",
+  "price_side": "BID",
+  "historical_ask": false,
+  "historical_spread": false,
+  "rows": 1662924,
+  "start": "2022-01-02T22:03:00+00:00",
+  "end": "2026-08-07T20:58:00+00:00",
+  "normalized_sha256": "b48d3e9e55c036f80cdedd2164d6156aefb57ce0272707f80bf75399f676f3d2",
+  "invalid_ohlc": 0,
+  "duplicate_timestamps": 184,
+  "certification": "CERTIFIED_B_LIMITED_SOURCE_LIMITATIONS",
+  "final_test_access_count": 0
+}

@@ -1,0 +1,35 @@
+{
+  "measurement_timestamp_utc": "2026-10-05T09:23:59.190768+00:00",
+  "source": "EXISTING_MT5_READ_ONLY_SYMBOL_INFO",
+  "server": "ICMarketsSC-Demo",
+  "symbol": "EURUSD",
+  "account_mode": 0,
+  "account_currency": "USD",
+  "mechanics": {
+    "trade_contract_size": 100000.0,
+    "trade_tick_size": 1e-05,
+    "trade_tick_value": 1.0,
+    "trade_tick_value_loss": 1.0,
+    "trade_tick_value_profit": 1.0,
+    "volume_min": 0.01,
+    "volume_max": 200.0,
+    "volume_step": 0.01,
+    "trade_stops_level": 0,
+    "trade_freeze_level": 0,
+    "point": 1e-05,
+    "digits": 5,
+    "margin_initial": 100000.0,
+    "margin_maintenance": 0.0,
+    "currency_base": "EUR",
+    "currency_profit": "USD",
+    "currency_margin": "EUR"
+  },
+  "margin_information": {
+    "margin": 0.0,
+    "margin_free": 5000200.0,
+    "margin_level": 0.0,
+    "leverage": 5000
+  },
+  "orders_enabled": false,
+  "scope": "AUDIT_ONLY; margin sufficiency is not certified by sizing utility"
+}

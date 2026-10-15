@@ -1,0 +1,1 @@
+# Data Source Decision`n`nDukascopy remains technically promising but usage status is UNCLEAR. TrueFX is provenance-controlled but depth-limited. HistData is a possible fallback with bid-only bars and no native historical spread. No bulk source was selected or downloaded.

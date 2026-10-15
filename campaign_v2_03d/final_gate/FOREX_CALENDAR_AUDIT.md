@@ -1,0 +1,1 @@
+# Forex Calendar Audit`n`nMethod: UTC-normalized HistData minutes with Saturday/Sunday closure windows and DST-aware EST/EDT normalization. The V2 source file does not retain a complete provenance record for every missing interval, so unexplained intervals remain UNKNOWN rather than being silently labeled closures. Calendar gate: PASS_WITH_LIMITATIONS.

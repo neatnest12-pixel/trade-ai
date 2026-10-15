@@ -1,0 +1,12 @@
+{
+  "dataset": "EURUSD_HISTDATA_M1_V2",
+  "rows": 1662924,
+  "start": "2022-01-02T22:03:00+00:00",
+  "end": "2026-08-07T20:58:00+00:00",
+  "sha256": "1c6b50aea7766f8d55770b8d73d52a75ade329e7ec9519396c9180cfe83cbd65",
+  "duplicates_removed": 0,
+  "unresolved_groups": 0,
+  "price_side": "BID",
+  "historical_ask": false,
+  "final_test_access_count": 0
+}

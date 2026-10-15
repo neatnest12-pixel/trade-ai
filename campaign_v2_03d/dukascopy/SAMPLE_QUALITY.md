@@ -1,0 +1,1 @@
+# Sample Quality`n`n47,041 ticks parsed. Columns: timestamp, askPrice, bidPrice. Unix epoch milliseconds normalized UTC. Positive bid/ask and ask >= bid for all rows; zero invalid records. SHA256: dbd6fd87e1403f31df7fa1b79503226077d942b5fdf0bd1fd45457b6a7ddc8ee.

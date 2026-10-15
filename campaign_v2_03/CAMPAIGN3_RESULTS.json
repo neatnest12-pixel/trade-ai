@@ -1,0 +1,31 @@
+{
+  "campaign": "V2 RESEARCH #3",
+  "dataset_sha256": "bdee314433d16eaa61405ab0c80f3769af2c79af632ce1f8d91458d40f00fcbf",
+  "total_setups_generated": 41115,
+  "positive_labels": 14631,
+  "negative_labels": 26484,
+  "timeouts": 0,
+  "experiments_completed": 3,
+  "configurations_evaluated": 15,
+  "models": [
+    {
+      "model": "logistic",
+      "status": "no qualifying threshold"
+    },
+    {
+      "model": "random_forest",
+      "threshold": 0.5,
+      "trades": 125,
+      "win_rate": 0.824,
+      "expectancy_r": 7174.501655054854,
+      "profit_factor": 5.410751160931128,
+      "max_drawdown_r": -66403.83375675348
+    },
+    {
+      "model": "gradient_boosting",
+      "status": "no qualifying threshold"
+    }
+  ],
+  "final_test_accessed": false,
+  "status": "NO VALIDATION-POSITIVE META-MODEL CANDIDATE"
+}
